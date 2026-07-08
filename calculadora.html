@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <input type="number" id="txtNum1" placeholder="Numero 1"><br><br>
+
+    <select id="CmbOperacion">
+        <option value="suma">Suma</option>
+        <option value="resta">Resta</option>
+        <option value="multiplicacion">Multiplicación</option>
+        <option value="division">División</option>
+    </select><br><br>
+
+    <input type="number" id="txtNum2" placeholder="Numero 2"><br><br>
+
+    <button onclick="calcular()">Calcular</button>
+    <button onclick="reiniciar()">Reiniciar</button><br><br>
+
+    <select id="ListBoxResultado" size="3"></select>
+
+    <script>
+        function calcular() {
+            let num1 = Number(document.getElementById("txtNum1").value);
+            let num2 = Number(document.getElementById("txtNum2").value);
+            let operacion = document.getElementById("CmbOperacion").value;
+
+            let resultado = 0;
+            let simbolo = "";
+
+            if (operacion == "suma") { resultado = num1 + num2; simbolo = "+"; }
+            if (operacion == "resta") { resultado = num1 - num2; simbolo = "-"; }
+            if (operacion == "multiplicacion") { resultado = num1 * num2; simbolo = "*"; }
+            if (operacion == "division") { resultado = num2 != 0 ? num1 / num2 : "Error: división por 0"; simbolo = "/"; }
+
+            let lb = document.getElementById("ListBoxResultado");
+            lb.innerHTML = "";
+
+            lb.options.add(new Option("Operación: " + num1 + " " + simbolo + " " + num2));
+            lb.options.add(new Option("Resultado: " + resultado));
+        }
+
+        function reiniciar() {
+            document.getElementById("txtNum1").value = "";
+            document.getElementById("txtNum2").value = "";
+            document.getElementById("CmbOperacion").selectedIndex = 0;
+            document.getElementById("ListBoxResultado").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
